@@ -76,4 +76,17 @@ routes.get('/movie/:id', (req, res) => {
     })
 })
 
+routes.get('/movie/:id/videos', (req, res) => {
+  const movieID = req.params.id
+
+  apiClient
+    .get(`/movie/${movieID}/videos${apiKey}`)
+    .then((result) => {
+      res.status(200).send(result.data)
+    })
+    .catch((error) => {
+      res.status(404).send(error)
+    })
+})
+
 module.exports = routes
