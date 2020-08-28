@@ -128,4 +128,69 @@ routes.get('/movie/:id/recommendations', (req, res) => {
     })
 })
 
+routes.get('/tv/:id', (req, res) => {
+  const tvID = req.params.id
+
+  apiClient
+    .get(`/tv/${tvID}${apiKey}`)
+    .then((result) => {
+      res.status(200).send(result.data)
+    })
+    .catch((error) => {
+      res.status(404).send(error)
+    })
+})
+
+routes.get('/tv/:id/videos', (req, res) => {
+  const tvID = req.params.id
+
+  apiClient
+    .get(`/tv/${tvID}/videos${apiKey}`)
+    .then((result) => {
+      res.status(200).send(result.data)
+    })
+    .catch((error) => {
+      res.status(404).send(error)
+    })
+})
+
+routes.get('/tv/:id/credits', (req, res) => {
+  const tvID = req.params.id
+
+  apiClient
+    .get(`/tv/${tvID}/credits${apiKey}`)
+    .then((result) => {
+      res.status(200).send(result.data)
+    })
+    .catch((error) => {
+      res.status(404).send(error)
+    })
+})
+
+routes.get('/tv/:id/similar', (req, res) => {
+  const tvID = req.params.id
+
+  apiClient
+    .get(`/tv/${tvID}/similar${apiKey}`)
+    .then((result) => {
+      res.status(200).send(result.data)
+    })
+    .catch((error) => {
+      res.status(404).send(error)
+    })
+})
+
+routes.get('/tv/:id/recommendations', (req, res) => {
+  const tvID = req.params.id
+
+  apiClient
+    .get(`/tv/${tvID}/recommendations${apiKey}`)
+    .then((result) => {
+      res.status(200).send(result.data)
+    })
+    .catch((error) => {
+      res.status(404).send(error)
+    })
+})
+
 module.exports = routes
