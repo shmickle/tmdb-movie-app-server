@@ -193,4 +193,30 @@ routes.get('/tv/:id/recommendations', (req, res) => {
     })
 })
 
+routes.get('/person/:id', (req, res) => {
+  const personID = req.params.id
+
+  apiClient
+    .get(`/person/${personID}${apiKey}&append_to_response=combined_credits`)
+    .then((result) => {
+      res.status(200).send(result.data)
+    })
+    .catch((error) => {
+      res.status(404).send(error)
+    })
+})
+
+routes.get('/person/:id/combined_credits', (req, res) => {
+  const personID = req.params.id
+
+  apiClient
+    .get(`/person/${personID}/combined_credits${apiKey}`)
+    .then((result) => {
+      res.status(200).send(result.data)
+    })
+    .catch((error) => {
+      res.status(404).send(error)
+    })
+})
+
 module.exports = routes
