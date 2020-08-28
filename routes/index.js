@@ -67,7 +67,7 @@ routes.get('/movie/:id', (req, res) => {
   const movieID = req.params.id
 
   apiClient
-    .get(`/movie/${movieID}${apiKey}`)
+    .get(`/movie/${movieID}${apiKey}&append_to_response=videos,credits,similar`)
     .then((result) => {
       res.status(200).send(result.data)
     })
@@ -132,7 +132,7 @@ routes.get('/tv/:id', (req, res) => {
   const tvID = req.params.id
 
   apiClient
-    .get(`/tv/${tvID}${apiKey}`)
+    .get(`/tv/${tvID}${apiKey}&append_to_response=videos,credits,similar`)
     .then((result) => {
       res.status(200).send(result.data)
     })
@@ -198,19 +198,6 @@ routes.get('/person/:id', (req, res) => {
 
   apiClient
     .get(`/person/${personID}${apiKey}&append_to_response=combined_credits`)
-    .then((result) => {
-      res.status(200).send(result.data)
-    })
-    .catch((error) => {
-      res.status(404).send(error)
-    })
-})
-
-routes.get('/person/:id/combined_credits', (req, res) => {
-  const personID = req.params.id
-
-  apiClient
-    .get(`/person/${personID}/combined_credits${apiKey}`)
     .then((result) => {
       res.status(200).send(result.data)
     })
