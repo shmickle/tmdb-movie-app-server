@@ -11,11 +11,15 @@ const apiClient = axios.create({
   },
 })
 
-routes.get('/search/multi/:query', (req, res) => {
+routes.get('/search/multi/:query/', (req, res) => {
   const query = req.params.query
+  let page = 1
+  if (req.query.page) {
+    page = req.query.page
+  }
 
   apiClient
-    .get(`/search/multi${apiKey}&query=${query}`)
+    .get(`/search/multi${apiKey}&query=${query}&page=${page}`)
     .then((result) => {
       res.status(200).send(result.data)
     })
