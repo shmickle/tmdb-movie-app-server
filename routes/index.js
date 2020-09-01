@@ -28,11 +28,14 @@ routes.get('/search/multi/:query/', (req, res) => {
     })
 })
 
-routes.get('/search/person/:query', (req, res) => {
+routes.get('/search/person/:query/', (req, res) => {
   const query = req.params.query
-
+  let page = 1
+  if (req.query.page) {
+    page = req.query.page
+  }
   apiClient
-    .get(`/search/person${apiKey}&query=${query}`)
+    .get(`/search/person${apiKey}&query=${query}&page=${page}`)
     .then((result) => {
       res.status(200).send(result.data)
     })
@@ -41,11 +44,14 @@ routes.get('/search/person/:query', (req, res) => {
     })
 })
 
-routes.get('/search/movie/:query', (req, res) => {
+routes.get('/search/movie/:query/', (req, res) => {
   const query = req.params.query
-
+  let page = 1
+  if (req.query.page) {
+    page = req.query.page
+  }
   apiClient
-    .get(`/search/movie${apiKey}&query=${query}`)
+    .get(`/search/movie${apiKey}&query=${query}&page=${page}`)
     .then((result) => {
       res.status(200).send(result.data)
     })
@@ -54,11 +60,14 @@ routes.get('/search/movie/:query', (req, res) => {
     })
 })
 
-routes.get('/search/tv/:query', (req, res) => {
+routes.get('/search/tv/:query/', (req, res) => {
   const query = req.params.query
-
+  let page = 1
+  if (req.query.page) {
+    page = req.query.page
+  }
   apiClient
-    .get(`/search/tv${apiKey}&query=${query}`)
+    .get(`/search/tv${apiKey}&query=${query}&page=${page}`)
     .then((result) => {
       res.status(200).send(result.data)
     })
