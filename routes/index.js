@@ -1,7 +1,7 @@
 const routes = require('express').Router()
 const axios = require('axios')
-// const apiKey = '?api_key=' + require('../api')
-const apiKey = '?api_key=' + process.env.APIKEY
+const apiKey = '?api_key=' + require('../api')
+// const apiKey = '?api_key=' + process.env.APIKEY
 
 const apiClient = axios.create({
   baseURL: `https://api.themoviedb.org/3/`,
@@ -81,7 +81,9 @@ routes.get('/movie/:id', (req, res) => {
   const movieID = req.params.id
 
   apiClient
-    .get(`/movie/${movieID}${apiKey}&append_to_response=videos,credits,similar`)
+    .get(
+      `/movie/${movieID}${apiKey}&append_to_response=videos,credits,similar,release_dates`
+    )
     .then((result) => {
       res.status(200).send(result.data)
     })
