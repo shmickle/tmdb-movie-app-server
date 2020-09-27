@@ -81,9 +81,7 @@ routes.get('/movie/:id', (req, res) => {
   const movieID = req.params.id
 
   apiClient
-    .get(
-      `/movie/${movieID}${apiKey}&append_to_response=videos,credits,similar,release_dates`
-    )
+    .get(`/movie/${movieID}${apiKey}&append_to_response=videos,credits,similar`)
     .then((result) => {
       res.status(200).send(result.data)
     })
