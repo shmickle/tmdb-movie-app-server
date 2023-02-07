@@ -1,21 +1,26 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const logger = require('morgan')
-const cors = require('cors')
-const path = require('path')
+const express = require("express")
+const bodyParser = require("body-parser")
+const logger = require("morgan")
+const cors = require("cors")
+const path = require("path")
 const app = express()
 const PORT = process.env.PORT || 3000
-const NODE_ENV = process.env.NODE_ENV || 'development'
-const routes = require('./routes')
+const NODE_ENV = process.env.NODE_ENV || "development"
+const routes = require("./routes")
 
-app.set('port', PORT)
-app.set('env', NODE_ENV)
-app.use(logger('tiny'))
+app.set("port", PORT)
+app.set("env", NODE_ENV)
+app.use(logger("tiny"))
 app.use(bodyParser.json())
 
-app.use(cors())
+var corsOptions = {
+  origin: "https://mml.ericmbryant.com",
+  optionsSuccessStatus: 200,
+}
 
-app.use('/', routes)
+app.use(cors(corsOptions))
+
+app.use("/", routes)
 
 app.use((req, res, next) => {
   const err = new Error(`${req.method} ${req.url} Not Found`)
@@ -36,7 +41,7 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(
     `Express Server started on Port ${app.get(
-      'port'
-    )} | Environment : ${app.get('env')}`
+      "port"
+    )} | Environment : ${app.get("env")}`
   )
 })

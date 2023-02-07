@@ -1,18 +1,18 @@
-const routes = require('express').Router()
-const axios = require('axios')
+const routes = require("express").Router()
+const axios = require("axios")
 // const apiKey = '?api_key=' + require('../api')
-const apiKey = '?api_key=' + process.env.APIKEY
+const apiKey = "?api_key=" + process.env.APIKEY
 
 const apiClient = axios.create({
   baseURL: `https://api.themoviedb.org/3/`,
   withCredentials: false,
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
+    Accept: "application/json",
+    "Content-Type": "application/json",
   },
 })
 
-routes.get('/search/multi/:query/', (req, res) => {
+routes.get("/search/multi/:query/", (req, res) => {
   const query = req.params.query
   let page = 1
   if (req.query.page) {
@@ -29,7 +29,7 @@ routes.get('/search/multi/:query/', (req, res) => {
     })
 })
 
-routes.get('/search/person/:query/', (req, res) => {
+routes.get("/search/person/:query/", (req, res) => {
   const query = req.params.query
   let page = 1
   if (req.query.page) {
@@ -45,7 +45,7 @@ routes.get('/search/person/:query/', (req, res) => {
     })
 })
 
-routes.get('/search/movie/:query/', (req, res) => {
+routes.get("/search/movie/:query/", (req, res) => {
   const query = req.params.query
   let page = 1
   if (req.query.page) {
@@ -61,7 +61,7 @@ routes.get('/search/movie/:query/', (req, res) => {
     })
 })
 
-routes.get('/search/tv/:query/', (req, res) => {
+routes.get("/search/tv/:query/", (req, res) => {
   const query = req.params.query
   let page = 1
   if (req.query.page) {
@@ -77,7 +77,7 @@ routes.get('/search/tv/:query/', (req, res) => {
     })
 })
 
-routes.get('/movie/:id', (req, res) => {
+routes.get("/movie/:id", (req, res) => {
   const movieID = req.params.id
 
   apiClient
@@ -90,7 +90,7 @@ routes.get('/movie/:id', (req, res) => {
     })
 })
 
-routes.get('/movie/:id/videos', (req, res) => {
+routes.get("/movie/:id/videos", (req, res) => {
   const movieID = req.params.id
 
   apiClient
@@ -103,7 +103,7 @@ routes.get('/movie/:id/videos', (req, res) => {
     })
 })
 
-routes.get('/movie/:id/credits', (req, res) => {
+routes.get("/movie/:id/credits", (req, res) => {
   const movieID = req.params.id
 
   apiClient
@@ -116,7 +116,7 @@ routes.get('/movie/:id/credits', (req, res) => {
     })
 })
 
-routes.get('/movie/:id/similar', (req, res) => {
+routes.get("/movie/:id/similar", (req, res) => {
   const movieID = req.params.id
 
   apiClient
@@ -129,7 +129,7 @@ routes.get('/movie/:id/similar', (req, res) => {
     })
 })
 
-routes.get('/movie/:id/recommendations', (req, res) => {
+routes.get("/movie/:id/recommendations", (req, res) => {
   const movieID = req.params.id
 
   apiClient
@@ -142,7 +142,7 @@ routes.get('/movie/:id/recommendations', (req, res) => {
     })
 })
 
-routes.get('/tv/:id', (req, res) => {
+routes.get("/tv/:id", (req, res) => {
   const tvID = req.params.id
 
   apiClient
@@ -155,7 +155,7 @@ routes.get('/tv/:id', (req, res) => {
     })
 })
 
-routes.get('/tv/:id/videos', (req, res) => {
+routes.get("/tv/:id/videos", (req, res) => {
   const tvID = req.params.id
 
   apiClient
@@ -168,7 +168,7 @@ routes.get('/tv/:id/videos', (req, res) => {
     })
 })
 
-routes.get('/tv/:id/credits', (req, res) => {
+routes.get("/tv/:id/credits", (req, res) => {
   const tvID = req.params.id
 
   apiClient
@@ -181,7 +181,7 @@ routes.get('/tv/:id/credits', (req, res) => {
     })
 })
 
-routes.get('/tv/:id/similar', (req, res) => {
+routes.get("/tv/:id/similar", (req, res) => {
   const tvID = req.params.id
 
   apiClient
@@ -194,7 +194,7 @@ routes.get('/tv/:id/similar', (req, res) => {
     })
 })
 
-routes.get('/tv/:id/recommendations', (req, res) => {
+routes.get("/tv/:id/recommendations", (req, res) => {
   const tvID = req.params.id
 
   apiClient
@@ -207,7 +207,7 @@ routes.get('/tv/:id/recommendations', (req, res) => {
     })
 })
 
-routes.get('/person/:id', (req, res) => {
+routes.get("/person/:id", (req, res) => {
   const personID = req.params.id
 
   apiClient
